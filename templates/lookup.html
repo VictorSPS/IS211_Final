@@ -1,0 +1,27 @@
+<html>
+<head>
+<title>Book Catalogue - Look Up/Add Books</title>
+</head>
+<body>
+{% extends "header.html" %}
+{% block content %}
+<h1>Book Lookup</h1>
+<form action="/lookup" method="post">
+ISBN #: <input type="text" name="ISBN"></input><br>
+<input type="submit" value="Look Up">
+</form>
+<form action="/addbook" method="post" name="addbookform">
+<input type="hidden" name="isbn" value="{{isbn}}"></input>
+<input type="hidden" name="title" value="{{title}}"></input>
+<input type="hidden" name="authors" value="{{authors}}"></input>
+<input type="hidden" name="pagecount" value="{{pagecount}}"></input>
+<input type="hidden" name="averagerating" value="{{averagerating}}"></input>
+<input type="hidden" name="thumbnail" value="{{thumbnail}}"></input>
+
+<table><tr><th></th><th>Title</th><th>Author(s)</th><th>Page Count</th><th>Average Rating</th><th>Add to Catalog</tr>
+<tr><td>{% if thumbnail %} <img src="{{thumbnail}}"></td>{% endif %}<td>{{title}}</td><td>{{authors}}</td><td>{{pagecount}}</td><td>{{averagerating}}</td><td><input type="submit" value="Add"></input></tr>
+</form>
+</table>
+</body>
+</html>
+{% endblock %}

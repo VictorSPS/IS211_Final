@@ -1,0 +1,9 @@
+<div style="width:100%;text-align:right;vertical-align:top">
+<a href="/">Home</a> | <a href="/lookup">Book Lookup</a> | {% if not session.logged_in %}<a href="/login">Login</a>{% else %}<a href="/logout">Logout</a>{% endif %}
+</div>
+<div name="flash-errors">
+{% for message in get_flashed_messages() %}
+    <div class="flash">{{ message }}</div>
+  {% endfor %}
+</div>
+{% block content %}{% endblock %}

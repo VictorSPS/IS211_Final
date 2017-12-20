@@ -1,0 +1,22 @@
+<html>
+<head><title>Book Catalogue</title></head>
+<body>
+{% extends "header.html" %}
+{% block content %}
+{% if not session.logged_in %}
+<H1>Book Catalogue</H1>
+<p>Welcome to the Book Catalogue.  Our application allows you to lookup and save your favorite books.</p>
+<p>You have to login to use this application: <a href="/login">Login Now</a>
+{% else %}
+<table>
+<tr><td colspan="5" style="text-align:center"><strong>Book Catalogue Listing</strong></td></tr>
+<tr><td>ISBN #</td><td>Title</td><td>Author(s)</td><td># Pages</td><td>Rating</td><td>Delete</td></tr>
+{% for book in books %}
+<tr><td>{% if book.thumbnail %}<img src="{{book.thumbnail}}">{% endif %}</td><td>{{book.isbn}}</td><td>{{book.title}}</td><td>{{book.authors}}</td><td>{{book.pagecount}}</td><td>{{book.averagerating}}</td><td><a href="/delete?id={{book.id}}">Delete</a></td></tr>
+{% endfor %}
+</table>
+<br>
+{% endif %}
+</body>
+</html>
+{% endblock %}
